@@ -59,7 +59,7 @@ jobs:
       uses: snnaplab/delete-branch-cache-action@v1
 
     - name: "💾 Save Build Folder"
-      uses: actions/cache@v3.3.1
+      uses: actions/cache@v3
       id: cache-folder
       with:
         key: llvm-folder
@@ -90,7 +90,7 @@ jobs:
         git config --global --add safe.directory '*'
 
     - name: "📂 Load LLVM-MinGW Folder"
-      uses: actions/cache@v3.3.1
+      uses: actions/cache@v3
       id: cache-folder
       with:
         key: llvm-folder
@@ -495,7 +495,7 @@ jobs:
             echo "BUILD_VERSION=$BUILD_VERSION" >> $GITHUB_ENV
 
     - name: "👍 Upload Artifact"
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: nano-for-windows_${{ env.BUILD_VERSION }}
         path: |
