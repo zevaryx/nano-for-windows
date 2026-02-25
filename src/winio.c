@@ -2847,13 +2847,13 @@ int update_line(linestruct *line, size_t index)
 		return update_softwrapped_line(line);
 
 	sequel_column = 0;
-#endif
 
-	row = line->lineno - openfile->edittop->lineno;
 	if (united_sidescroll)
 		from_col = openfile->brink;
 	else
+#endif
 		from_col = get_page_start(wideness(line->data, index));
+	row = line->lineno - openfile->edittop->lineno;
 
 	/* Expand the piece to be drawn to its representable form, and draw it. */
 	converted = display_string(line->data, from_col, editwincols, TRUE, FALSE);
@@ -2949,9 +2949,10 @@ bool line_needs_update(const size_t old_column, const size_t new_column)
 #endif
 	if (get_page_start(old_column) == get_page_start(new_column))
 		return FALSE;
+#ifndef NANO_TINY
 	if (united_sidescroll)
 		refresh_needed = TRUE;
-
+#endif
 	return !refresh_needed;
 }
 
@@ -3361,9 +3362,11 @@ void edit_redraw(linestruct *old_current, update_type manner)
 		adjust_viewport(ISSET(JUMPY_SCROLLING) ? CENTERING : manner);
 		refresh_needed = TRUE;
 		return;
+#ifndef NANO_TINY
 	} else if (united_sidescroll) {
 		refresh_needed = TRUE;
 		return;
+#endif
 	}
 
 #ifndef NANO_TINY
@@ -3403,10 +3406,11 @@ void edit_refresh(void)
 	if (current_is_offscreen())
 		adjust_viewport((focusing || ISSET(JUMPY_SCROLLING)) ? CENTERING : FLOWING);
 
+#ifndef NANO_TINY
 	/* When panning, ensure the cursor will be within the viewport. */
 	if (united_sidescroll)
 		openfile->brink = get_page_start(xplustabs());
-
+#endif
 #ifdef ENABLE_COLOR
 	/* When needed and useful, initialize the colors for the current syntax. */
 	if (openfile->syntax && !have_palette && !ISSET(NO_SYNTAX) && has_colors())
