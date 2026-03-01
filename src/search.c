@@ -443,7 +443,7 @@ void go_looking(void)
 		not_found_msg(last_search);
 
 #ifdef TIMEIT
-	statusline(INFO, "Took: %.2f", (double)(clock() - start) / CLOCKS_PER_SEC);
+	statusline(NOTICE, "Took: %.2f", (double)(clock() - start) / CLOCKS_PER_SEC);
 #endif
 
 	edit_redraw(was_current, CENTERING);

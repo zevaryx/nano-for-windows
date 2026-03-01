@@ -3454,7 +3454,7 @@ void edit_refresh(void)
 	}
 
 #ifdef TIMEREFRESH
-	statusline(INFO, "Refresh: %.1f ms", 1000 * (double)(clock() - start) / CLOCKS_PER_SEC);
+	statusline(NOTICE, "Refresh: %.1f ms", 1000 * (double)(clock() - start) / CLOCKS_PER_SEC);
 #endif
 
 	place_the_cursor();
