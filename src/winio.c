@@ -3363,7 +3363,8 @@ void edit_redraw(linestruct *old_current, update_type manner)
 		refresh_needed = TRUE;
 		return;
 #ifndef NANO_TINY
-	} else if (united_sidescroll && openfile->mark) {
+	} else if (united_sidescroll && (openfile->mark ||
+									get_page_start(was_pww) != openfile->brink)) {
 		refresh_needed = TRUE;
 		return;
 #endif
