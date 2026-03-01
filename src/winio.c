@@ -3363,7 +3363,7 @@ void edit_redraw(linestruct *old_current, update_type manner)
 		refresh_needed = TRUE;
 		return;
 #ifndef NANO_TINY
-	} else if (united_sidescroll) {
+	} else if (united_sidescroll && openfile->mark) {
 		refresh_needed = TRUE;
 		return;
 #endif
